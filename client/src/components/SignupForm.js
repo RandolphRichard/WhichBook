@@ -6,11 +6,11 @@ import { useMutation } from '@apollo/react-hooks';
 
 const SignupForm = () => {
     const [addUser, { error }] = useMutation(ADD_USER);
-    // Primary form state
+    // set initial form state
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-    // state for validation form
+    // set state for form validation
     const [validated] = useState(false);
-    // alert alert
+    // set state for alert
     const [showAlert, setShowAlert] = useState(false);
 
     const handleInputChange = (event) => {
@@ -20,6 +20,13 @@ const SignupForm = () => {
 
     const handleFormSubmit = async event => {
         event.preventDefault();
+
+        // check if form has everything (as per react-bootstrap docs)
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
 
         try {
             const { data } = await addUser({
@@ -41,9 +48,9 @@ const SignupForm = () => {
 
     return (
         <>
-            
+            {/* This is needed for the validation functionality above */}
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-                
+                {/* show alert if server response is bad */}
                 <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                     Something went wrong with your signup!
                 </Alert>
