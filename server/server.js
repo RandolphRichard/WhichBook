@@ -10,7 +10,7 @@ const { authMiddleware } = require('./utils/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
+require("dotenv").config()
 // create a new Apollo and pass in the schema data
 const server = new ApolloServer({
   typeDefs,
