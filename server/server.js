@@ -40,3 +40,4 @@ db.once('open', () => {
     console.log(`\n ----------- Use GraphQL at http://localhost:${PORT}${server.graphqlPath} ----------`);
   });
 });
+
