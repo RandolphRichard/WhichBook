@@ -6,14 +6,14 @@ import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const LoginForm = () => {
-  // set initial form state
+  
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
 
   const [login] = useMutation(LOGIN_USER);
 
-  // set state for form validation
+  
   const [validated] = useState(false);
-  // set state for alert
+
   const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
@@ -24,7 +24,7 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
+    
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
